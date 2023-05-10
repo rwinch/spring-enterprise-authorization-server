@@ -1,0 +1,3 @@
+= Enterprise Security with Spring Authorization Server 1.0
+
+The source code and https://docs.google.com/presentation/d/171PB-61F_LnPXPeQpQVC11z_KyJ4j9e-knx1mfJeIWE/edit?usp=sharing[slides] for https://2023.springio.net/sessions/enterprise-security-with-spring-authorization-server-10/[Enterprise Security with Spring Authorization Server 1.0] for https://2023.springio.net/[Spring IO 2023].

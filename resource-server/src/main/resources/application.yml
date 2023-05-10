@@ -1,0 +1,8 @@
+server:
+  port: 7070
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090

@@ -1,0 +1,31 @@
+# https://docs.spring.io/spring-boot/docs/3.1.x/reference/htmlsingle/#web.security.oauth2.authorization-server
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          spring:
+            registration:
+              client-id: "spring"
+              # bcrypt of secret
+              client-secret: "{bcrypt}$2a$14$R4y8inie3JrOiY3w.wqlL.H1fle8XjFnJNfPt/IeFPKgFI2NiJ95C"
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+                - "client_credentials"
+              redirect-uris:
+                - "http://127.0.0.1:8080/login/oauth2/code/spring"
+              scopes:
+                - "openid"
+                - "profile"
+                - "email"
+                - "phone"
+                - "address"
+            require-authorization-consent: true
+    user:
+      # bcrypt of password
+      password: '{bcrypt}$2a$14$wAytVtOdFf3zexfmwugM7u0HmyN/L2YCcTeQ651SjuhW8Qy2ajMgG'
+server:
+  port: 9090
