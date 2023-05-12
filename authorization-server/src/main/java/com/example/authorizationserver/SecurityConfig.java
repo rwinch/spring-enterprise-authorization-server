@@ -42,11 +42,14 @@ public class SecurityConfig {
 			throws Exception {
 		http
 			.authorizeHttpRequests((authorize) -> authorize
+				.requestMatchers("/login", "/error").permitAll()
 				.anyRequest().authenticated()
 			)
 			// Form login handles the redirect to the login page from the
 			// authorization server filter chain
-			.formLogin(Customizer.withDefaults());
+			.formLogin(login -> login
+				.loginPage("/login")
+			);
 
 		return http.build();
 	}
