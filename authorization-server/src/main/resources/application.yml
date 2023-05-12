@@ -12,3 +12,8 @@ spring:
       - 'classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql'
 server:
   port: 9090
+jwt:
+  key:
+    id: 'configured-f57f-46a2-b502-8a24c308be7f'
+    public: classpath:app.pub
+    private: classpath:app.key
