@@ -6,7 +6,9 @@ import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,6 +28,9 @@ public class SecurityConfig {
 			throws Exception {
 		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
 		http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
+				.authorizationEndpoint(authz -> authz
+					.consentPage("/oauth2/consent")
+				)
 				.oidc(Customizer.withDefaults());	// Enable OpenID Connect 1.0
 		http
 			// Redirect to the login page when not authenticated from the
@@ -61,6 +66,11 @@ public class SecurityConfig {
 	@Bean
 	JdbcRegisteredClientRepository registeredClientRepository(DataSource dataSource) {
 		return new JdbcRegisteredClientRepository(new JdbcTemplate(dataSource));
+	}
+
+	@Bean
+	JdbcOAuth2AuthorizationConsentService consentService(DataSource dataSource, RegisteredClientRepository clientRepository) {
+		return new JdbcOAuth2AuthorizationConsentService(new JdbcTemplate(dataSource), clientRepository);
 	}
 
 }

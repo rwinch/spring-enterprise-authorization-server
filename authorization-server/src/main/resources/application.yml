@@ -6,6 +6,8 @@ spring:
       password: '{bcrypt}$2a$14$wAytVtOdFf3zexfmwugM7u0HmyN/L2YCcTeQ651SjuhW8Qy2ajMgG'
   sql:
     init:
-      schema-locations: 'classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql'
+      schema-locations:
+      - 'classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql'
+      - 'classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql'
 server:
   port: 9090
