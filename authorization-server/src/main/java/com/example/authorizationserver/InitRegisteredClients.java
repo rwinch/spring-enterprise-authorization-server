@@ -39,6 +39,7 @@ public class InitRegisteredClients implements ApplicationRunner {
 					scopes.add("email");
 					scopes.add("phone");
 					scopes.add("address");
+					scopes.add("keys.write");
 				})
 				.clientSettings(ClientSettings.builder()
 					.requireAuthorizationConsent(true)
